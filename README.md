@@ -49,7 +49,7 @@ Supports:
 cd backend
 python -m venv psyra_venv
 psyra_venv\Scripts\activate   # Windows
-# source psyra_venv/bin/activate   # Mac/Linux
+source psyra_venv/bin/activate   # Mac/Linux
 pip install -r requirements.txt
 python app.py
 
