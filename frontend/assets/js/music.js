@@ -4,6 +4,8 @@ async function getMusic() {
     const mood = document.getElementById("moodSelect").value;
 
     try {
+        console.log("Fetching music for mood:", mood);
+
         const res = await fetch(API, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
@@ -11,16 +13,25 @@ async function getMusic() {
         });
 
         const data = await res.json();
+        console.log("Response:", data);
+
         if (!data.success) {
             alert("Error getting music");
             return;
         }
 
-        // OFFLINE SONG
-        document.getElementById("offlineTitle").innerText = data.offline.title;
-        document.getElementById("player").src = `assets/music/${data.offline.file}`;
+        // 🎧 OFFLINE MUSIC
+        const player = document.getElementById("player");
+        const title = document.getElementById("offlineTitle");
 
-        // ONLINE PLAYLISTS
+        title.innerText = data.offline.title;
+
+        // IMPORTANT FIX: correct path
+        player.src = `assets/music/${data.offline.file}`;
+        player.load();   // force reload
+        player.play();   // auto play
+
+        // 🌐 ONLINE PLAYLISTS
         const list = document.getElementById("playlistList");
         list.innerHTML = "";
 
