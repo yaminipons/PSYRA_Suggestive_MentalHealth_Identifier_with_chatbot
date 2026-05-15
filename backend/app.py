@@ -1,9 +1,3 @@
-# backend/app.py
-#.\psyra_venv\Scripts\Activate
-#rasa train
-#rasa run --enable-api -p 5005
-#python app.py
-#rasa run actions
 from flask import Flask
 from routes.auth_routes import auth_bp
 from routes.quiz_routes import quiz_bp
