@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PSYRA AI Companion — Supportive Conversational Chat</title>
+  <meta name="description" content="Talk with Psyra, a compassionate Grok-powered mental-wellness companion holding space for your emotions." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main class="container" style="padding-top:1rem;padding-bottom:2rem;">
+    <!-- Crisis Support Alert Header (Mandatory Safety Layer) -->
+    <div style="background:var(--accent-coral-soft);border:1px solid var(--accent-coral);border-radius:var(--radius-sm);padding:0.6rem 1rem;margin-bottom:1rem;font-size:0.83rem;color:var(--text-main);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.5rem;">
+      <div>
+        <strong>Immediate Crisis Support:</strong> If you are in distress or thinking about self-harm, please dial or text <strong>988</strong> (USA/Canada) or text HOME to <strong>741741</strong> for free 24/7 confidential help.
+      </div>
+      <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer" style="text-decoration:underline;font-weight:600;">
+        International Helplines →
+      </a>
+    </div>
+
+    <!-- Chat Box -->
+    <div class="chat-container">
+      <!-- Chat Header -->
+      <div class="chat-header">
+        <div class="chat-bot-info">
+          <img src="/src/assets/images/psyra_mascot_1793120890913.jpg" class="chat-bot-avatar" alt="Psyra Mascot" />
+          <div>
+            <h3 style="font-size:1.1rem;margin-bottom:2px;">PSYRA AI Companion</h3>
+            <span id="emotionContextIndicator" style="font-size:0.75rem;color:var(--text-light);">
+              Connecting to Grok xAI...
+            </span>
+          </div>
+        </div>
+
+        <div style="display:flex;align-items:center;gap:0.75rem;">
+          <!-- Consent Context Sharing Toggle -->
+          <label style="display:flex;align-items:center;gap:0.4rem;font-size:0.8rem;color:var(--text-muted);cursor:pointer;" title="Allows Psyra to understand your latest 5-question check-in category">
+            <input type="checkbox" id="shareEmotionToggle" style="width:auto;margin:0;" />
+            <span>Share mood context</span>
+          </label>
+
+          <button type="button" class="btn btn-secondary" style="font-size:0.78rem;padding:0.35rem 0.65rem;" onclick="clearChatSession()">
+            Clear Chat
+          </button>
+        </div>
+      </div>
+
+      <!-- Messages Scroll Area -->
+      <div class="chat-messages" id="chatMessagesContainer">
+        <!-- Rendered dynamically -->
+      </div>
+
+      <!-- Suggested Conversation Starters -->
+      <div class="chat-starters" id="chatStartersContainer">
+        <button type="button" class="starter-chip" onclick="sendChatMessage('I want to talk about my day.')">
+          I want to talk about my day.
+        </button>
+        <button type="button" class="starter-chip" onclick="sendChatMessage('Can you suggest a calming activity?')">
+          Can you suggest a calming activity?
+        </button>
+        <button type="button" class="starter-chip" onclick="sendChatMessage('Help me organize my thoughts.')">
+          Help me organize my thoughts.
+        </button>
+        <button type="button" class="starter-chip" onclick="sendChatMessage('Give me a journal prompt.')">
+          Give me a journal prompt.
+        </button>
+        <button type="button" class="starter-chip" onclick="sendChatMessage('Can we try a short breathing exercise?')">
+          Can we try a short breathing exercise?
+        </button>
+      </div>
+
+      <!-- Input Bar -->
+      <div class="chat-input-bar">
+        <input 
+          type="text" 
+          id="chatInput" 
+          placeholder="Share what is on your heart... (Press Enter to send)" 
+          autocomplete="off"
+          onkeydown="handleInputKeydown(event)"
+        />
+        <button type="button" class="btn btn-primary" onclick="sendChatMessage()">
+          Send
+        </button>
+      </div>
+    </div>
+
+    <!-- Non-clinical disclaimer -->
+    <div style="text-align:center;font-size:0.78rem;color:var(--text-light);margin-top:0.75rem;">
+      Psyra is an AI self-reflection companion powered by Grok xAI. Responses are supportive and non-clinical.
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script src="/frontend/js/chat.js"></script>
+</body>
+</html>

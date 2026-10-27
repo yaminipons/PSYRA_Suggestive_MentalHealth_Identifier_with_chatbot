@@ -1,0 +1,6 @@
+{
+  "name": "PSYRA - Psychological Relief Assistant",
+  "description": "A supportive mental-wellness web application that holds space for every emotion with 5-question wellness assessment, Grok-powered AI companion, calming doodle canvas, journal, and music recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

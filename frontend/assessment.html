@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5-Question Wellness Check-in — PSYRA</title>
+  <meta name="description" content="Five gentle multiple-choice questions to understand your energy, stress, and connection today." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main style="padding:2.5rem 0 4rem;">
+    <div class="container" style="max-width:720px;">
+      <div style="text-align:center;margin-bottom:2rem;">
+        <span class="hero-tagline">Self-Reflection Check-in</span>
+        <h1 style="font-size:2rem;margin-bottom:0.5rem;">How is your spirit today?</h1>
+        <p>Answer honestly and without overthinking. There are no right or wrong answers here.</p>
+      </div>
+
+      <div id="assessmentContainer">
+        <!-- Rendered dynamically by assessment.js -->
+      </div>
+
+      <div class="disclaimer-banner" style="margin-top:2rem;">
+        <span class="disclaimer-icon">ℹ</span>
+        <span>
+          <strong>Important Reminder:</strong> This 5-question reflection is designed for personal insight and supportive wellness activity pairing. It is not a clinical assessment or psychological diagnosis.
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script src="/frontend/js/assessment.js"></script>
+</body>
+</html>

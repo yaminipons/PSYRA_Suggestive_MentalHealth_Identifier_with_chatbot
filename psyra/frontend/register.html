@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Your Account — PSYRA</title>
+  <meta name="description" content="Register for PSYRA to save your emotional reflections, journal entries, and personalized check-ins." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main style="padding:3rem 0 5rem;">
+    <div class="container" style="max-width:460px;">
+      <div class="card" style="padding:2.25rem;">
+        <div style="text-align:center;margin-bottom:1.5rem;">
+          <img src="/src/assets/images/psyra_mascot_1793120890913.jpg" alt="Psyra" style="width:60px;height:60px;border-radius:50%;margin-bottom:0.75rem;object-fit:cover;" />
+          <h1 style="font-size:1.6rem;margin-bottom:0.25rem;">Create Your Account</h1>
+          <p style="font-size:0.88rem;">Begin your gentle journey toward emotional reflection and relief.</p>
+        </div>
+
+        <form id="registerForm" onsubmit="handleRegisterSubmit(event)">
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="regName">Display Name</label>
+            <input type="text" id="regName" placeholder="How would you like Psyra to greet you?" required minlength="2" autocomplete="name" />
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="regEmail">Email Address</label>
+            <input type="email" id="regEmail" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+
+          <div style="margin-bottom:1rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="regPassword">Password (min 8 characters)</label>
+            <input type="password" id="regPassword" placeholder="••••••••" required minlength="8" autocomplete="new-password" />
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="regConfirmPassword">Confirm Password</label>
+            <input type="password" id="regConfirmPassword" placeholder="••••••••" required minlength="8" autocomplete="new-password" />
+          </div>
+
+          <button type="submit" id="regSubmitBtn" class="btn btn-primary" style="width:100%;padding:0.7rem;font-size:0.95rem;margin-bottom:1rem;">
+            Register Account
+          </button>
+        </form>
+
+        <div style="text-align:center;font-size:0.78rem;color:var(--text-light);margin-bottom:1rem;">
+          Your entries are private. We never sell your data or share your reflections with third parties.
+        </div>
+
+        <div style="text-align:center;font-size:0.85rem;color:var(--text-muted);border-top:1px solid var(--border-light);padding-top:1rem;">
+          Already have an account? <a href="/login.html" style="font-weight:600;color:var(--accent-primary);text-decoration:underline;">Sign in here</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script>
+    async function handleRegisterSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const pass = document.getElementById('regPassword').value;
+      const confirmPass = document.getElementById('regConfirmPassword').value;
+      const btn = document.getElementById('regSubmitBtn');
+
+      if (pass !== confirmPass) {
+        showToast("Passwords do not match. Please verify and try again.", "error");
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Creating account...';
+
+      try {
+        await AuthAPI.register(name, email, pass, confirmPass);
+        showToast("Account created successfully! Welcome to Psyra.", "success");
+        setTimeout(() => {
+          window.location.href = '/assessment.html';
+        }, 700);
+      } catch (err) {
+        showToast(err.message, "error");
+        btn.disabled = false;
+        btn.textContent = 'Register Account';
+      }
+    }
+  </script>
+</body>
+</html>

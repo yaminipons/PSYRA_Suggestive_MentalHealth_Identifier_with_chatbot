@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emotional-Wellness Dashboard — PSYRA</title>
+  <meta name="description" content="Personalized mental-wellness dashboard with recommended activities, reflection history, and AI support." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main style="padding:2.5rem 0 4rem;">
+    <div class="container">
+      <!-- Greeting Header -->
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.5rem;margin-bottom:2rem;">
+        <div>
+          <span class="hero-tagline">Personal Wellness Sanctuary</span>
+          <h1 id="userGreeting" style="font-size:2.2rem;margin-top:0.25rem;">Welcome to PSYRA</h1>
+          <p>Here is your current emotional landscape and gentle practices tailored to support you.</p>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <a href="/assessment.html" class="btn btn-secondary">
+            Retake 5-Question Check-in
+          </a>
+          <a href="/chat.html" class="btn btn-primary">
+            Open AI Companion
+          </a>
+        </div>
+      </div>
+
+      <!-- Current Emotion Result Card -->
+      <section class="card" id="emotionResultCard" style="margin-bottom:2.5rem;padding:2rem;">
+        <div class="typing-indicator" style="margin:2rem auto;">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+        </div>
+      </section>
+
+      <!-- Quick Access Hub -->
+      <section style="margin-bottom:3rem;">
+        <h3 style="margin-bottom:1rem;">Wellness Hub</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));gap:1.25rem;">
+          <a href="/chat.html" class="card card-hover" style="display:block;">
+            <div style="font-size:1.75rem;margin-bottom:0.5rem;">💬</div>
+            <h4>Psyra AI Companion</h4>
+            <p style="font-size:0.85rem;margin-top:0.25rem;">Compassionate chat holding space for your feelings.</p>
+          </a>
+          <a href="/doodle.html" class="card card-hover" style="display:block;">
+            <div style="font-size:1.75rem;margin-bottom:0.5rem;">🎨</div>
+            <h4>Interactive Doodle Board</h4>
+            <p style="font-size:0.85rem;margin-top:0.25rem;">Unwind visually with intuitive brush strokes and color.</p>
+          </a>
+          <a href="/journal.html" class="card card-hover" style="display:block;">
+            <div style="font-size:1.75rem;margin-bottom:0.5rem;">✍️</div>
+            <h4>Reflection Journal</h4>
+            <p style="font-size:0.85rem;margin-top:0.25rem;">Put down heavy thoughts and record quiet insights.</p>
+          </a>
+          <a href="/music.html" class="card card-hover" style="display:block;">
+            <div style="font-size:1.75rem;margin-bottom:0.5rem;">🎧</div>
+            <h4>Sound & Music Therapy</h4>
+            <p style="font-size:0.85rem;margin-top:0.25rem;">Calm ocean waves, rain on glass, and soothing chords.</p>
+          </a>
+        </div>
+      </section>
+
+      <!-- Assessment History Section -->
+      <section class="card" style="margin-bottom:2.5rem;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;">
+          <div>
+            <h3 style="font-size:1.15rem;">Recent Reflections History</h3>
+            <p style="font-size:0.85rem;">Review how your energy and state evolve over time.</p>
+          </div>
+          <a href="/assessment.html" class="btn btn-secondary" style="font-size:0.8rem;padding:0.35rem 0.75rem;">
+            + New Check-in
+          </a>
+        </div>
+        <div id="assessmentHistoryList">
+          <!-- Loaded dynamically -->
+        </div>
+      </section>
+
+      <!-- Non-clinical disclaimer -->
+      <div class="disclaimer-banner">
+        <span class="disclaimer-icon">ℹ</span>
+        <span>
+          <strong>Non-Clinical Tool:</strong> PSYRA is designed as an empathetic self-reflection tool. It does not replace medical advice, psychological treatment, or crisis intervention. If you are experiencing distress, please reach out to professional services or dial 988.
+        </span>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script src="/frontend/js/dashboard.js"></script>
+</body>
+</html>

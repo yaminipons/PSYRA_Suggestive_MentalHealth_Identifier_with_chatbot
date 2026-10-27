@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calming Doodle Board — PSYRA</title>
+  <meta name="description" content="Free-form calming drawing canvas for mindfulness, tactile expression, and creative stress relief." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main style="padding:2rem 0 3.5rem;">
+    <div class="container">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1.5rem;">
+        <div>
+          <span class="hero-tagline">Tactile Mindfulness</span>
+          <h1 style="font-size:2rem;margin-top:0.25rem;">Interactive Doodle Board</h1>
+          <p>Trace slow lines, scribble freely, or draw whatever brings your mind a little ease.</p>
+        </div>
+
+        <div style="display:flex;gap:0.75rem;">
+          <button type="button" class="btn btn-secondary" onclick="undoDoodle()">
+            ↺ Undo
+          </button>
+          <button type="button" class="btn btn-secondary" onclick="clearDoodleCanvas()">
+            Clear Canvas
+          </button>
+          <button type="button" class="btn btn-primary" onclick="downloadDoodle()">
+            Save Drawing
+          </button>
+        </div>
+      </div>
+
+      <div class="doodle-workspace">
+        <!-- Sidebar Controls -->
+        <div class="card doodle-controls">
+          <div>
+            <h4 style="font-size:0.95rem;margin-bottom:0.75rem;">Earth & Pastel Palette</h4>
+            <div class="color-palette" id="paletteContainer">
+              <!-- Colors injected dynamically -->
+            </div>
+          </div>
+
+          <div>
+            <h4 style="font-size:0.95rem;margin-bottom:0.5rem;">Tools</h4>
+            <button type="button" id="eraserBtn" class="btn btn-secondary" style="width:100%;" onclick="setEraserMode()">
+              Eraser
+            </button>
+          </div>
+
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+              <h4 style="font-size:0.95rem;">Stroke Width</h4>
+              <span id="brushSizeValue" style="font-size:0.85rem;color:var(--text-muted);" class="tabular-nums">5px</span>
+            </div>
+            <input type="range" id="brushSizeSlider" min="1" max="40" value="5" />
+          </div>
+
+          <div style="background:var(--bg-subtle);padding:1rem;border-radius:var(--radius-sm);font-size:0.82rem;color:var(--text-muted);border:1px solid var(--border-light);">
+            <strong>Drawing Tip:</strong> You don't have to make "art". Focus purely on the smooth motion of your hand and the sensation of releasing tension onto the screen.
+          </div>
+        </div>
+
+        <!-- Canvas Area -->
+        <div class="canvas-container">
+          <canvas id="doodleCanvas"></canvas>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script src="/frontend/js/doodle.js"></script>
+</body>
+</html>

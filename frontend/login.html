@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — PSYRA</title>
+  <meta name="description" content="Sign in to your private PSYRA mental-wellness account." />
+  <link rel="stylesheet" href="/frontend/css/style.css" />
+  <link rel="icon" href="/src/assets/images/psyra_mascot_1793120890913.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div id="siteHeaderContainer"></div>
+
+  <main style="padding:3.5rem 0 5rem;">
+    <div class="container" style="max-width:440px;">
+      <div class="card" style="padding:2.25rem;">
+        <div style="text-align:center;margin-bottom:1.75rem;">
+          <img src="/src/assets/images/psyra_mascot_1793120890913.jpg" alt="Psyra" style="width:64px;height:64px;border-radius:50%;margin-bottom:0.75rem;object-fit:cover;" />
+          <h1 style="font-size:1.6rem;margin-bottom:0.25rem;">Welcome Back</h1>
+          <p style="font-size:0.9rem;">Sign in to access your assessment history and private journal.</p>
+        </div>
+
+        <form id="loginForm" onsubmit="handleLoginSubmit(event)">
+          <div style="margin-bottom:1.15rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" placeholder="you@example.com" required autocomplete="email" />
+          </div>
+
+          <div style="margin-bottom:1.5rem;">
+            <label style="display:block;font-size:0.85rem;font-weight:600;margin-bottom:0.35rem;" for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••" required autocomplete="current-password" />
+          </div>
+
+          <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width:100%;padding:0.7rem;font-size:0.95rem;margin-bottom:1rem;">
+            Sign In
+          </button>
+        </form>
+
+        <div style="position:relative;text-align:center;margin:1.25rem 0;">
+          <div style="height:1px;background:var(--border-light);position:absolute;top:50%;left:0;right:0;"></div>
+          <span style="position:relative;background:var(--bg-surface);padding:0 0.75rem;font-size:0.8rem;color:var(--text-light);">or</span>
+        </div>
+
+        <button type="button" class="btn btn-secondary" style="width:100%;padding:0.65rem;" onclick="continueAsGuest()">
+          Explore in Guest Mode
+        </button>
+
+        <div style="text-align:center;margin-top:1.5rem;font-size:0.85rem;color:var(--text-muted);">
+          Don't have an account? <a href="/register.html" style="font-weight:600;color:var(--accent-primary);text-decoration:underline;">Create one now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooterContainer"></div>
+
+  <script src="/frontend/js/api.js"></script>
+  <script src="/frontend/js/app.js"></script>
+  <script>
+    async function handleLoginSubmit(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      const btn = document.getElementById('loginSubmitBtn');
+
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+
+      try {
+        await AuthAPI.login(email, password);
+        showToast("Signed in successfully!", "success");
+        setTimeout(() => {
+          window.location.href = '/dashboard.html';
+        }, 600);
+      } catch (err) {
+        showToast(err.message, "error");
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+      }
+    }
+
+    function continueAsGuest() {
+      const guest = {
+        id: 'guest_session_' + Date.now(),
+        display_name: 'Guest Friend',
+        email: 'guest@psyra.app',
+        created_at: new Date().toISOString()
+      };
+      setUser(guest);
+      showToast("Continuing as Guest Friend.", "info");
+      setTimeout(() => {
+        window.location.href = '/dashboard.html';
+      }, 500);
+    }
+  </script>
+</body>
+</html>
